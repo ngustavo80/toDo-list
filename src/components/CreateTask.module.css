@@ -1,0 +1,40 @@
+.createTaskInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: -1.5rem;
+  gap: 0.5rem;
+}
+
+.createTaskInput input {
+  flex: 1;
+
+  background: var(--gray-500);
+  color: var(--gray-100);
+
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+}
+
+.createTaskInput button {
+  background: var(--blue-500);
+  
+  border: none;
+  border-radius: 8px;
+
+  padding: 1rem;
+
+  font-weight: 700;
+  font-size: 0.875rem;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.createTaskInput svg {
+  margin-left: 0.5rem;
+}

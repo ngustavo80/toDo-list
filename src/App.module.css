@@ -1,10 +1,12 @@
-.headerContainer {
-  background: var(--gray-700);
-  height: 12.5rem;
+.wrapper {
   width: 100%;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
+.mainContainer {
+  width: 46rem;
+}
