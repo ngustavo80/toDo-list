@@ -1,40 +1,10 @@
 .tasksContainer {
-  margin-top: 4rem
+  margin-bottom: 0.75rem;
 }
 
-.countTasksWrapper {
-  display: flex;
-  justify-content: space-between;
-
-  margin-bottom: 1.5rem;
+.tasksContainer:last-child {
+  margin-bottom: none;
 }
-
-.createdTasks strong {
-  color: var(--blue-200);
-  font-weight: 700;
-  font-size: 0.875rem;
-
-  margin-right: 0.5rem;
-}
-
-.completedTasks strong {
-  color: var(--purple-200);
-  font-weight: 700;
-  font-size: 0.875rem;
-
-  margin-right: 0.5rem;
-}
-
-.count {
-  color: var(--gray-200);
-
-  font-weight: 700;
-  font-size: 0.75rem;
-
-  background: var(--gray-400);
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-};
 
 /*--------------------LISTA-----------------------*/
 
@@ -48,7 +18,7 @@
   background: var(--gray-500);
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  justify-content: space-between;
 
   padding: 1rem;
   border-radius: 8px;
@@ -61,7 +31,14 @@
 }
 
 /*---------------CHECKBOX------------------------*/
-.tasksList li input[type='checkbox'] {
+.inputWrapper {
+  flex: 1;
+
+  display: flex;
+  gap: 0.5rem
+}
+
+.inputWrapper input[type='checkbox'] {
   cursor: pointer;
   appearance: none;
 
@@ -75,24 +52,24 @@
   position: relative;
 }
 
-.tasksList li input[type='checkbox']:hover {
+.inputWrapper input[type='checkbox']:hover {
   appearance: none;
   border: 2px solid var(--blue-500);
 }
 
-.tasksList li input[type='checkbox']:checked {
+.inputWrapper input[type='checkbox']:checked {
   background: var(--purple-500);
   border: none;
 }
 
-.tasksList li input[type='checkbox']:checked::before {
+.inputWrapper input[type='checkbox']:checked::before {
   content: "✓";
   position: absolute;
   top: 0;
   left: 1.7px;
 }
 
-.tasksList li input[type='checkbox']:checked:hover {
+.inputWrapper input[type='checkbox']:checked:hover {
   background: var(--purple-200);
 }
 

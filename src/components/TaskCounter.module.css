@@ -1,0 +1,33 @@
+.countTasksWrapper {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 1.5rem;
+}
+
+.createdTasks strong {
+  color: var(--blue-200);
+  font-weight: 700;
+  font-size: 0.875rem;
+
+  margin-right: 0.5rem;
+}
+
+.completedTasks strong {
+  color: var(--purple-200);
+  font-weight: 700;
+  font-size: 0.875rem;
+
+  margin-right: 0.5rem;
+}
+
+.count {
+  color: var(--gray-200);
+
+  font-weight: 700;
+  font-size: 0.75rem;
+
+  background: var(--gray-400);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+};

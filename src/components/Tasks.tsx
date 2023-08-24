@@ -1,43 +1,51 @@
+import { useState } from 'react'
+
 import { Trash } from '@phosphor-icons/react'
 
 import styles from './Tasks.module.css'
-import { useState } from 'react'
 
-export function Tasks() {
+interface TasksProps {
+  content: string;
+  onDeleteTask: (taskContent: string) => void;
+  sumCompletedTasks: () => void;
+  minusCompletedTasks: () => void;
+}
+
+export function Tasks({ content, onDeleteTask, sumCompletedTasks,  minusCompletedTasks }: TasksProps) {
   const [inputState, setInputState] = useState(false)
-
+  
   function handleInputState() {
-    if (inputState === false) {
-      setInputState(true)
-    } else if (inputState === true) {
-      setInputState(false)
-    }
+    switch (inputState) {
+      case false:
+        setInputState(true)
+        sumCompletedTasks()
+      break;
 
-    console.log(inputState)
+      case true:
+        setInputState(false)
+        minusCompletedTasks()
+      break
+    }
+  }
+
+  function handleDeleteTask() {
+    onDeleteTask(content)
   }
 
   return (
     <div className={styles.tasksContainer}>
-      <div className={styles.countTasksWrapper}>
-        <div className={styles.createdTasks}>
-          <strong>Tarefas criadas</strong>
-          <span className={styles.count}>5</span>
-        </div>
-
-        <div className={styles.completedTasks}>
-          <strong>Concluídas</strong>
-          <span className={styles.count}>2 de 5</span>
-        </div>
-      </div>
-
         <ul className={styles.tasksList}>
           <li>
-            <input type="checkbox" onClick={handleInputState} /> 
-            <p className={inputState ? styles.taskTextChecked : styles.taskText}>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</p>
-            <button className={styles.deleteTaskButton} type='button'>
-              <Trash size={20} />
-            </button>
-          </li>
+              <div className={styles.inputWrapper}>
+                <input type="checkbox" onClick={handleInputState} /> 
+                <p className={inputState ? styles.taskTextChecked : styles.taskText}>
+                  {content}
+                </p>
+              </div>
+              <button className={styles.deleteTaskButton} type='button' onClick={handleDeleteTask}>
+                <Trash size={20} />
+              </button>
+            </li>
         </ul>
     </div>
   )

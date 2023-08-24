@@ -1,9 +1,16 @@
+.mainContainer {
+  max-width: 46rem;
+  margin: 0 auto;
+
+  padding: 0 1rem;
+}
+
 .createTaskInput {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  margin-top: -1.5rem;
+  margin: -1.5rem 0 4rem 0;
   gap: 0.5rem;
 }
 
