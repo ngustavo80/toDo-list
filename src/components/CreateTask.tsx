@@ -8,7 +8,7 @@ export function CreateTask() {
       <input type="text" placeholder="Adicione uma nova tarefa" />
       <button>
         Criar
-        <PlusCircle size={16} />
+        <PlusCircle size={20} />
       </button>
     </div>
   )

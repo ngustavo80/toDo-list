@@ -1,0 +1,127 @@
+.tasksContainer {
+  margin-top: 4rem
+}
+
+.countTasksWrapper {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 1.5rem;
+}
+
+.createdTasks strong {
+  color: var(--blue-200);
+  font-weight: 700;
+  font-size: 0.875rem;
+
+  margin-right: 0.5rem;
+}
+
+.completedTasks strong {
+  color: var(--purple-200);
+  font-weight: 700;
+  font-size: 0.875rem;
+
+  margin-right: 0.5rem;
+}
+
+.count {
+  color: var(--gray-200);
+
+  font-weight: 700;
+  font-size: 0.75rem;
+
+  background: var(--gray-400);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+};
+
+/*--------------------LISTA-----------------------*/
+
+.tasksList {
+  
+}
+
+.tasksList li {
+  list-style: none;
+
+  background: var(--gray-500);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  
+}
+
+.tasksList li:last-child{
+  margin-bottom: 0;
+}
+
+/*---------------CHECKBOX------------------------*/
+.tasksList li input[type='checkbox'] {
+  cursor: pointer;
+  appearance: none;
+
+  height: 1.25rem;
+  width: 1.25rem;
+
+  border: 2px solid var(--blue-200);
+  border-radius: 50%;
+  padding: 0.5rem;
+
+  position: relative;
+}
+
+.tasksList li input[type='checkbox']:hover {
+  appearance: none;
+  border: 2px solid var(--blue-500);
+}
+
+.tasksList li input[type='checkbox']:checked {
+  background: var(--purple-500);
+  border: none;
+}
+
+.tasksList li input[type='checkbox']:checked::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 1.7px;
+}
+
+.tasksList li input[type='checkbox']:checked:hover {
+  background: var(--purple-200);
+}
+
+/*--------------------------------------------------------------*/
+
+.taskText {
+  color: var(--gray-100);
+  line-height: 1.4rem;
+  font-size: 0.875rem;
+}
+
+.taskTextChecked {
+  text-decoration: line-through;
+  color: var(--gray-300);
+  font-size: 0.875rem;
+  line-height: 1.4rem;
+}
+
+.deleteTaskButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  color: var(--gray-300);
+  line-height: 0;
+
+  transition: color 0.2s;
+}
+
+.deleteTaskButton:hover {
+  color: var(--red-300);
+}
