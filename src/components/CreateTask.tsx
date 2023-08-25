@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-
+import { v4 as uuidv4 } from 'uuid'
 import { PlusCircle } from '@phosphor-icons/react'
 
 import { TaskCounter } from './TaskCounter'
@@ -7,34 +7,48 @@ import { Tasks } from './Tasks'
 
 import styles from './CreateTask.module.css'
 
+export interface TaskProps {
+  id: string;
+  title: string;
+  isCompleted: boolean
+}
+
 export function CreateTask() {
-  const [tasks, setTasks] = useState<string[]>([])
+  const [tasks, setTasks] = useState<TaskProps[]>([])
   const [newTaskText, setNewTaskText] = useState('')
-  const [completedTasks, setCompletedTasks] = useState(0)
 
-  function sumCompletedTasks() {
-    setCompletedTasks((state) => { return state + 1})
-  }
+  function handleCreateNewTask(event: FormEvent) {
+    event.preventDefault()
 
-  function minusCompletedTasks() {
-    setCompletedTasks((state) => { return state - 1})
-  }
+    const newTask = { id: uuidv4(), title: newTaskText, isCompleted: false }
+    setTasks([...tasks, newTask])
+  } 
 
   function handleNewTaskText(event: ChangeEvent<HTMLInputElement>) {
     setNewTaskText(event.target.value)
   }
 
-  function handleCreateNewTask(event: FormEvent) {
-    event.preventDefault()
-    setTasks([...tasks, newTaskText])
-  } 
-
   function deleteTask(taskContent: string) {
-    const tasksArrayWithoutTheDeletedOne = tasks.filter(task => task !== taskContent)
+    const tasksWithoutTheDeletedOne = tasks.filter(task => task.id !== taskContent)
 
-    setTasks(tasksArrayWithoutTheDeletedOne)
+    setTasks(tasksWithoutTheDeletedOne)
   }
 
+  function toggleCompleteTask(id: string) {
+    const tasksArrayToggled = tasks.map(task => {
+      if(task.id === id) {
+        return {
+          ...task,
+          isCompleted: !task.isCompleted
+        }
+      }
+
+      return task
+    })
+
+    setTasks(tasksArrayToggled)
+  }
+  
   return (
     <main className={styles.mainContainer}>
       <form className={styles.createTaskInput} onSubmit={handleCreateNewTask}>
@@ -50,16 +64,18 @@ export function CreateTask() {
         </button>
       </form>
 
-      <TaskCounter tasksQuantity={tasks} taskCompleted={completedTasks} />
+      <TaskCounter 
+        tasksArray={tasks}  
+      />
 
       {
         tasks.map(task => {
           return (
             <Tasks 
+              key={task.id}
               content={task} 
-              onDeleteTask={deleteTask} 
-              sumCompletedTasks={sumCompletedTasks} 
-              minusCompletedTasks={minusCompletedTasks}
+              onDeleteTask={deleteTask}
+              onToggleTask={toggleCompleteTask}         
             />
           )
         })

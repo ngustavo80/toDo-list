@@ -1,35 +1,22 @@
-import { useState } from 'react'
-
 import { Trash } from '@phosphor-icons/react'
 
 import styles from './Tasks.module.css'
+import { TaskProps } from './CreateTask';
 
-interface TasksProps {
-  content: string;
+interface ContentProps {
+  content: TaskProps;
   onDeleteTask: (taskContent: string) => void;
-  sumCompletedTasks: () => void;
-  minusCompletedTasks: () => void;
+  onToggleTask: (id: string) => void;
 }
 
-export function Tasks({ content, onDeleteTask, sumCompletedTasks,  minusCompletedTasks }: TasksProps) {
-  const [inputState, setInputState] = useState(false)
-  
-  function handleInputState() {
-    switch (inputState) {
-      case false:
-        setInputState(true)
-        sumCompletedTasks()
-      break;
-
-      case true:
-        setInputState(false)
-        minusCompletedTasks()
-      break
-    }
-  }
+export function Tasks({ content, onDeleteTask, onToggleTask }: ContentProps) {
 
   function handleDeleteTask() {
-    onDeleteTask(content)
+    onDeleteTask(content.id)
+  }
+
+  function handleCompleteTask() {
+    onToggleTask(content.id)
   }
 
   return (
@@ -37,9 +24,9 @@ export function Tasks({ content, onDeleteTask, sumCompletedTasks,  minusComplete
         <ul className={styles.tasksList}>
           <li>
               <div className={styles.inputWrapper}>
-                <input type="checkbox" onClick={handleInputState} /> 
-                <p className={inputState ? styles.taskTextChecked : styles.taskText}>
-                  {content}
+                <input type="checkbox" onClick={handleCompleteTask} /> 
+                <p className={content.isCompleted ? styles.taskTextChecked : styles.taskText}>
+                  {content.title}
                 </p>
               </div>
               <button className={styles.deleteTaskButton} type='button' onClick={handleDeleteTask}>
