@@ -1,27 +1,45 @@
-# React + TypeScript + Vite
+<div align="center">
+  <img src="./src/assets/Logo.svg" alt="Let me ask logo" style='height: 100px'>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+  <h2 style='display: block'>ToDo list is a web application to create and control tasks.</h2>
+</div>
 
-Currently, two official plugins are available:
+## Techs
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<ul>
+  <li>
+    <strong>ReactJS </strong>
+  </li>
+  <li>
+    <strong>TypeScript</strong>
+  </li>
+  <li>
+    <strong>Vite </strong>
+  </li>
+  <li>
+    <strong>CSS Modules </strong>
+  </li>
+</ul>
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Project
 
-- Configure the top-level `parserOptions` property like this:
+### Clone project
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+$ git clone https://github.com/ngustavo80/toDo-list.git
+```  
+
+### Instalar dependências
+
+  ```bash
+$ npm i
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Screenshots
+
+![Screenshot1](.github/screenshot1.png)
+
+![Screenshot2](.github/screnshot2.png)
