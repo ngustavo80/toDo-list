@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { PlusCircle } from '@phosphor-icons/react'
 
@@ -6,6 +6,7 @@ import { TaskCounter } from './TaskCounter'
 import { Tasks } from './Tasks'
 
 import styles from './CreateTask.module.css'
+import { EmptyTaskList } from './EmptyTaskList'
 
 export interface TaskProps {
   id: string;
@@ -22,10 +23,16 @@ export function CreateTask() {
 
     const newTask = { id: uuidv4(), title: newTaskText, isCompleted: false }
     setTasks([...tasks, newTask])
+    setNewTaskText('')
   } 
 
   function handleNewTaskText(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('')
     setNewTaskText(event.target.value)
+  }
+
+  function handleNewTaskTextInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Esse campo é obrigatório!!')
   }
 
   function deleteTask(taskContent: string) {
@@ -49,6 +56,8 @@ export function CreateTask() {
     setTasks(tasksArrayToggled)
   }
   
+  const isNewTaskTextEmpty = newTaskText.length === 0
+
   return (
     <main className={styles.mainContainer}>
       <form className={styles.createTaskInput} onSubmit={handleCreateNewTask}>
@@ -57,18 +66,23 @@ export function CreateTask() {
           placeholder="Adicione uma nova tarefa" 
           name="inputTask"
           onChange={handleNewTaskText}
+          onInvalid={handleNewTaskTextInvalid}
+          value={newTaskText}
         />
-        <button type="submit">
+        <button type="submit" disabled={isNewTaskTextEmpty}>
           Criar
           <PlusCircle size={20} />
         </button>
       </form>
 
-      <TaskCounter 
-        tasksArray={tasks}  
-      />
+      <TaskCounter tasksArray={tasks} />
 
+      
       {
+        tasks.length === 0 
+          ? 
+        <EmptyTaskList /> 
+          : 
         tasks.map(task => {
           return (
             <Tasks 
