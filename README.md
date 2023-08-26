@@ -32,7 +32,7 @@
 $ git clone https://github.com/ngustavo80/toDo-list.git
 ```  
 
-### Instalar dependências
+### Install dependencies
 
   ```bash
 $ npm i
